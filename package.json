@@ -23,8 +23,8 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "lint": "prettier --check .",
-        "format": "npx prettier --write \"**/*.{js,jsx,json,ts,tsx,css,module.css}\"",
+        "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+        "format": "prettier --write \"**/*.{js,jsx,json,ts,tsx,css}\"",
         "prepare": "husky install"
     },
     "eslintConfig": {
@@ -62,11 +62,11 @@
         "tailwindcss": "^3.3.5"
     },
     "lint-staged": {
-        "*.{js, jsx,ts,tsx}": [
-            "eslint --quiet --fix"
+        "*.{js,jsx,ts,tsx}": [
+            "yarn lint"
         ],
-        "*.{json,js,ts,jsx,tsx,html}": [
-            "prettier --write --ignore-unknown"
+        "*.{json,js,ts,jsx,tsx,html,css,md}": [
+            "yarn format"
         ]
     }
 }
