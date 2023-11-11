@@ -4,13 +4,19 @@ import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@material-tailwind/react";
 import { Home } from "./lib/pages/Home";
-import { HOME_PATH } from "./lib/paths";
+import { PATH_HOME, PATH_SAVED } from "./lib/paths";
 import "react-multi-carousel/lib/styles.css";
+import { Saved } from "./lib/pages/Saved";
+import { Footer } from "./components/Footer";
 
 const router = createBrowserRouter([
     {
-        path: HOME_PATH,
+        path: PATH_HOME,
         element: <Home />
+    },
+    {
+        path: PATH_SAVED,
+        element: <Saved />
     }
 ]);
 
@@ -19,6 +25,7 @@ root.render(
     <React.StrictMode>
         <ThemeProvider>
             <RouterProvider router={router} />
+            <Footer />
         </ThemeProvider>
     </React.StrictMode>
 );
