@@ -9,10 +9,11 @@ export const CategoryRecipesRow = () => {
                 <RecipesCarousel />
             </div>
 
-            <Button className="w-max rounded-md bg-green-400" ripple={false}>
-                View more...
-            </Button>
-            <hr className="border-black" />
+            <a href="/">
+                <Button className="w-max rounded-md bg-green-400" ripple={false}>
+                    View more...
+                </Button>
+            </a>
         </div>
     );
 };
