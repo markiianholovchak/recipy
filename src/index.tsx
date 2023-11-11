@@ -8,6 +8,8 @@ import { PATH_HOME, PATH_SAVED } from "./lib/paths";
 import "react-multi-carousel/lib/styles.css";
 import { Saved } from "./lib/pages/Saved";
 import { Footer } from "./components/Footer";
+import { UserRecipesContextProvider } from "./lib/contexts/UserRecipesContext";
+import { Header } from "./components/Header";
 
 const router = createBrowserRouter([
     {
@@ -24,8 +26,11 @@ const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(
     <React.StrictMode>
         <ThemeProvider>
-            <RouterProvider router={router} />
-            <Footer />
+            <UserRecipesContextProvider>
+                <Header />
+                <RouterProvider router={router} />
+                <Footer />
+            </UserRecipesContextProvider>
         </ThemeProvider>
     </React.StrictMode>
 );

@@ -1,7 +1,7 @@
 import { Button, Input, Textarea } from "@material-tailwind/react";
 import { FormEvent } from "react";
 import { useReducer } from "react";
-import { EMPTY_RECIPE } from "../../lib/constants/recipe";
+import { EMPTY_RECIPE } from "../../lib/constants/recipe.constants";
 import {
     isDishTypesValid,
     isReadyInMinutesValid,
@@ -11,6 +11,7 @@ import {
 } from "../../lib/validators/recipeForm.validators";
 import { CategorySelect } from "../CategorySelect";
 import { FormFiled } from "./FormField";
+import { useUserRecipesContext } from "../../lib/contexts/UserRecipesContext";
 
 const recipeReducer = (state: Partial<RecipeInformation>, action: RecipeReducerAction) => {
     switch (action.type) {
@@ -62,13 +63,19 @@ const recipeReducer = (state: Partial<RecipeInformation>, action: RecipeReducerA
 
 type RecipeFormProps = {
     onCancel?: () => void;
+    onSave?: () => void;
 };
 
-export const RecipeForm = ({ onCancel }: RecipeFormProps) => {
+export const RecipeForm = ({ onCancel, onSave }: RecipeFormProps) => {
     const [state, dispatch] = useReducer(recipeReducer, EMPTY_RECIPE);
     const { title, summary, instructions, readyInMinutes, dishTypes } = state;
+
+    const { addUserRecipe } = useUserRecipesContext();
+
     const handleSaveRecipe = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        addUserRecipe(state as RecipeInformation);
+        onSave?.();
     };
 
     const handleCancel = () => {

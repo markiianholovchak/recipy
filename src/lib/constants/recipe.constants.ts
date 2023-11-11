@@ -31,3 +31,5 @@ export const RECIPE_CATEGORIES = [
     "snack",
     "drink"
 ];
+
+export const USER_RECIPES_STORAGE_KEY = "user-recipes";

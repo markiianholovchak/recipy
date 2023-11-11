@@ -1,5 +1,5 @@
 import { Button } from "@material-tailwind/react";
-import { HEADER_NAVIGATION_LINKS } from "../lib/constants/nav";
+import { HEADER_NAVIGATION_LINKS } from "../lib/constants/nav.constants";
 import { SearchBar } from "./SearchBar";
 
 type NavLinkProps = {
@@ -17,7 +17,7 @@ const NavLink = ({ link }: NavLinkProps) => {
 
 export const Header = () => {
     return (
-        <header className="relative flex h-[50vh] w-full flex-col">
+        <header className="relative flex h-[45vh] w-full flex-col">
             <div className="z-1 absolute left-0 top-0 h-full w-full">
                 <img src="/assets/header-bg.jpg" className=" h-full w-full object-cover"></img>
                 <div className="absolute left-0 top-0 h-full w-full bg-green-500 opacity-[0.25]"></div>

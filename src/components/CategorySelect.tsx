@@ -1,5 +1,5 @@
 import { Select, Option } from "@material-tailwind/react";
-import { RECIPE_CATEGORIES } from "../lib/constants/recipe";
+import { RECIPE_CATEGORIES } from "../lib/constants/recipe.constants";
 
 type CategorySelectProps = {
     value?: string;
