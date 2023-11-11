@@ -1,5 +1,11 @@
+import { RecipeCard } from "./components/UI/RecipeCard";
+
 function App() {
-    return <div>This is s the react app!</div>;
+    return (
+        <div>
+            <RecipeCard />
+        </div>
+    );
 }
 
 export default App;
