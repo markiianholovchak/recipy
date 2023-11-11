@@ -1,11 +1,5 @@
-import { RecipeCard } from "./components/UI/RecipeCard";
-
 function App() {
-    return (
-        <div>
-            <RecipeCard />
-        </div>
-    );
+    return <div></div>;
 }
 
 export default App;
