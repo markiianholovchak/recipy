@@ -3,6 +3,8 @@ import { useState } from "react";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { useUserRecipesContext } from "../../lib/contexts/UserRecipesContext";
 import { getDurationStringFromDuration } from "../../lib/utils/general.utils";
+import { useNavigate } from "react-router-dom";
+import { PATH_RECIPE_DETAILS } from "../../lib/paths";
 
 type RecipeCardProps = {
     recipe: RecipeInformation;
@@ -16,9 +18,17 @@ export const RecipeCard = ({ recipe, isUserRecipe }: RecipeCardProps) => {
             deleteUserRecipe(recipe.id);
         }
     };
+    const navigate = useNavigate();
+
+    const handleGoToRecipeDetails = () => {
+        navigate(PATH_RECIPE_DETAILS(recipe.id.toString()));
+    };
 
     return (
-        <div className="relative flex w-[15rem] flex-col gap-2">
+        <div
+            className="relative flex w-[15rem] cursor-pointer flex-col gap-2"
+            onClick={handleGoToRecipeDetails}
+        >
             <div className=" h-[15rem] rounded-md bg-gray-200 object-contain">
                 <img
                     src="/assets/cheesecake.jpg"

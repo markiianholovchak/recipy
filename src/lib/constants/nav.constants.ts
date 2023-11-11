@@ -3,10 +3,12 @@ import { PATH_SAVED } from "../paths";
 export const HEADER_NAVIGATION_LINKS: NavigationLink[] = [
     {
         link: PATH_SAVED,
-        title: "Saved Recipes"
+        title: "Saved Recipes",
+        isInternal: true
     },
     {
         link: "/",
-        title: "About Us"
+        title: "About Us",
+        isInternal: true
     }
 ];

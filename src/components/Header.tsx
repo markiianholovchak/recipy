@@ -1,11 +1,20 @@
 import { Button } from "@material-tailwind/react";
 import { HEADER_NAVIGATION_LINKS } from "../lib/constants/nav.constants";
 import { SearchBar } from "./SearchBar";
+import { Link } from "react-router-dom";
 
 type NavLinkProps = {
     link: NavigationLink;
 };
 const NavLink = ({ link }: NavLinkProps) => {
+    if (link.isInternal)
+        return (
+            <Link to={link.link}>
+                <Button variant="outlined" color="white">
+                    {link.title}
+                </Button>
+            </Link>
+        );
     return (
         <a href={link.link}>
             <Button variant="outlined" color="white">

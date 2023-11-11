@@ -59,7 +59,12 @@ export const UserRecipesContextProvider: React.FC<MyProviderProps> = ({ children
 
     return (
         <UserRecipesContext.Provider
-            value={{ userRecipes, updateUserRecipes, addUserRecipe, deleteUserRecipe }}
+            value={{
+                userRecipes,
+                updateUserRecipes,
+                addUserRecipe,
+                deleteUserRecipe
+            }}
         >
             {children}
         </UserRecipesContext.Provider>
