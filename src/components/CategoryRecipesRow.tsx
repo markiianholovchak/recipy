@@ -12,7 +12,7 @@ export const CategoryRecipesRow = () => {
             <Button className="w-max rounded-md bg-green-400" ripple={false}>
                 View more...
             </Button>
-            <div className="h-[1px] w-full bg-black"></div>
+            <hr className="border-black" />
         </div>
     );
 };

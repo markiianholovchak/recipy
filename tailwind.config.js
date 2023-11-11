@@ -7,11 +7,22 @@ export default withMT({
     theme: {
         extend: {
             colors: {
-                black: "#09180C",
+                black: "#212529",
                 green: {
                     50: "#FBFCE5",
                     400: "#389357",
                     500: "#2d793b"
+                },
+                gray: {
+                    50: "#f1f2f4",
+                    100: "#d5d9dd",
+                    200: "#b8bfc6",
+                    300: "#b8bfc6",
+                    400: "#808c99",
+                    500: "#66737f",
+                    600: "#505963",
+                    700: "#394047",
+                    800: "#394047"
                 }
             },
             fontFamily: {
