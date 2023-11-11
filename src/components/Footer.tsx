@@ -3,7 +3,7 @@ import { NewsLetterForm } from "./NewsletterForm";
 
 export const Footer = () => {
     return (
-        <footer className="mb-16 mt-10">
+        <footer className="mb-16 mt-14">
             <ContentContainer>
                 <div className="flex flex-col gap-4">
                     <div className="flex flex-col justify-between gap-4 md:flex-row">

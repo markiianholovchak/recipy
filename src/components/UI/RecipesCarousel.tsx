@@ -1,6 +1,6 @@
 import Carousel from "react-multi-carousel";
 
-import { RecipeCard } from "./RecipeCard";
+// import { RecipeCard } from "./RecipeCard";
 export const RecipesCarousel = () => {
     const responsive = {
         "2xl": {
@@ -36,15 +36,7 @@ export const RecipesCarousel = () => {
     };
     return (
         <Carousel responsive={responsive} swipeable itemClass="flex justify-center">
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-
-            <RecipeCard />
+            <></>
         </Carousel>
     );
 };

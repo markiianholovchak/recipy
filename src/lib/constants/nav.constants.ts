@@ -1,6 +1,8 @@
+import { PATH_SAVED } from "../paths";
+
 export const HEADER_NAVIGATION_LINKS: NavigationLink[] = [
     {
-        link: "/",
+        link: PATH_SAVED,
         title: "Saved Recipes"
     },
     {

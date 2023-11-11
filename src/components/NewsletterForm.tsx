@@ -1,6 +1,6 @@
 import { Button, Input } from "@material-tailwind/react";
 import { useState } from "react";
-import { EMAIL_REGEX } from "../lib/constants/regex";
+import { EMAIL_REGEX } from "../lib/constants/regex.constants";
 
 export const NewsLetterForm = () => {
     const [email, setEmail] = useState("");
