@@ -1,11 +1,17 @@
+import { useState } from "react";
 import { AiOutlineClockCircle } from "react-icons/ai";
 export const RecipeCard = () => {
+    const [hasImageLoaded, setHasImageLoaded] = useState(false);
+
     return (
         <div className="flex w-[15rem] flex-col gap-2">
             <div className=" h-[15rem] rounded-md bg-gray-200 object-contain">
                 <img
                     src="/assets/cheesecake.jpg"
-                    className="h-full w-full rounded-md object-cover"
+                    className={`h-full w-full rounded-md object-cover ${
+                        hasImageLoaded ? "" : "blur-xl"
+                    }`}
+                    onLoad={() => setHasImageLoaded(true)}
                 />
             </div>
             <div className="flex flex-col gap-3">
