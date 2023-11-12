@@ -1,3 +1,5 @@
+import { CUISINES } from "../constants/recipe.constants";
+
 export const spoonacularRecipeToRecipe = (
     spoonacularRecipe: SpoonacularRecipeInformation
 ): RecipeInformation => {
@@ -15,7 +17,8 @@ export const spoonacularRecipeToRecipe = (
         vegan,
         vegetarian,
         dishTypes,
-        summary
+        summary,
+        extendedIngredients
     } = spoonacularRecipe;
     return {
         id,
@@ -31,6 +34,11 @@ export const spoonacularRecipeToRecipe = (
         vegan,
         vegetarian,
         dishTypes,
-        summary
+        summary,
+        extendedIngredients
     };
+};
+
+export const cuisinesToOptions = (): Option[] => {
+    return CUISINES.map(cuisine => ({ value: cuisine, label: cuisine }));
 };

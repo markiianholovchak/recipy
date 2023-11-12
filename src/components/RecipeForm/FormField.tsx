@@ -7,7 +7,7 @@ type FormFieldProps = {
     invalidMessage?: string;
     required?: boolean;
 };
-export const FormFiled = ({ title, field, isValid, invalidMessage, required }: FormFieldProps) => {
+export const FormField = ({ title, field, isValid, invalidMessage, required }: FormFieldProps) => {
     const wasTouched = useRef(false);
     return (
         <div className="flex flex-col gap-2">
