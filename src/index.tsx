@@ -11,24 +11,27 @@ import { Footer } from "./components/Footer";
 import { UserRecipesContextProvider } from "./lib/contexts/UserRecipesContext";
 import { Header } from "./components/Header";
 import { RecipeDetails } from "./lib/pages/RecipeDetails";
+import { SavedRecipesContextProvider } from "./lib/contexts/SavedRecipesContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
     <React.StrictMode>
         <ThemeProvider>
             <UserRecipesContextProvider>
-                <BrowserRouter>
-                    <Header />
-                    <Routes>
-                        <Route path={PATH_HOME} element={<Home />} />
-                        <Route path={PATH_SAVED} element={<Saved />} />
-                        <Route
-                            path={PATH_RECIPE_DETAILS_BASE + "/:recipeId"}
-                            element={<RecipeDetails />}
-                        />
-                    </Routes>
-                    <Footer />
-                </BrowserRouter>
+                <SavedRecipesContextProvider>
+                    <BrowserRouter>
+                        <Header />
+                        <Routes>
+                            <Route path={PATH_HOME} element={<Home />} />
+                            <Route path={PATH_SAVED} element={<Saved />} />
+                            <Route
+                                path={PATH_RECIPE_DETAILS_BASE + "/:recipeId"}
+                                element={<RecipeDetails />}
+                            />
+                        </Routes>
+                        <Footer />
+                    </BrowserRouter>
+                </SavedRecipesContextProvider>
             </UserRecipesContextProvider>
         </ThemeProvider>
     </React.StrictMode>

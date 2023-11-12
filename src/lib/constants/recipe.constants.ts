@@ -33,3 +33,4 @@ export const RECIPE_CATEGORIES = [
 ];
 
 export const USER_RECIPES_STORAGE_KEY = "user-recipes";
+export const SAVED_RECIPES_STORAGE_KEY = "saved-recipes";
