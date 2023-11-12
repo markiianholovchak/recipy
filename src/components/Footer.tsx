@@ -1,5 +1,6 @@
 import { ContentContainer } from "./UI/ContentContainer";
 import { NewsLetterForm } from "./NewsletterForm";
+import { Divider } from "./UI/Divider";
 
 export const Footer = () => {
     return (
@@ -17,7 +18,7 @@ export const Footer = () => {
                         </div>
                         <NewsLetterForm />
                     </div>
-                    <hr className="border-black" />
+                    <Divider />
                     <div className="flex justify-between font-light text-gray-500">
                         <p>&copy; {new Date().getFullYear()} Recipy. All Rights Reserved.</p>
                         <nav className="flex gap-2">

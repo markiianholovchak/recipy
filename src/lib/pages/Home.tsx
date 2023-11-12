@@ -1,5 +1,6 @@
 import { CategoryRecipesRow } from "../../components/CategoryRecipesRow";
 import { ContentContainer } from "../../components/UI/ContentContainer";
+import { Divider } from "../../components/UI/Divider";
 
 export const Home = () => {
     return (
@@ -7,9 +8,9 @@ export const Home = () => {
             <ContentContainer>
                 <div className="flex flex-col gap-10">
                     <CategoryRecipesRow />
-                    <hr className="border-black" />
+                    <Divider />
                     <CategoryRecipesRow />
-                    <hr className="border-black" />
+                    <Divider />
                     <CategoryRecipesRow />
                 </div>
             </ContentContainer>

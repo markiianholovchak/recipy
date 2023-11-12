@@ -10,8 +10,11 @@ import {
     isTitleValid
 } from "../../lib/validators/recipeForm.validators";
 import { CategorySelect } from "../CategorySelect";
-import { FormFiled } from "./FormField";
+import { FormField } from "./FormField";
 import { useUserRecipesContext } from "../../lib/contexts/UserRecipesContext";
+import { CheckboxGroup } from "../CheckboxGroup";
+import { cuisinesToOptions } from "../../lib/transformers/recipe.transformers";
+import { RadioGroup } from "../RadioGroup";
 
 const recipeReducer = (state: Partial<RecipeInformation>, action: RecipeReducerAction) => {
     switch (action.type) {
@@ -58,6 +61,18 @@ const recipeReducer = (state: Partial<RecipeInformation>, action: RecipeReducerA
                 ...EMPTY_RECIPE
             };
         }
+        case "change_cuisines": {
+            return {
+                ...state,
+                cuisines: action.value
+            };
+        }
+        case "change_vegetarian": {
+            return {
+                ...state,
+                vegetarian: action.value === "true"
+            };
+        }
     }
 };
 
@@ -68,7 +83,7 @@ type RecipeFormProps = {
 
 export const RecipeForm = ({ onCancel, onSave }: RecipeFormProps) => {
     const [state, dispatch] = useReducer(recipeReducer, EMPTY_RECIPE);
-    const { title, summary, instructions, readyInMinutes, dishTypes } = state;
+    const { title, summary, instructions, readyInMinutes, dishTypes, cuisines, vegetarian } = state;
 
     const { addUserRecipe } = useUserRecipesContext();
 
@@ -87,7 +102,7 @@ export const RecipeForm = ({ onCancel, onSave }: RecipeFormProps) => {
         <form onSubmit={handleSaveRecipe}>
             <p className="text-2xl font-medium">Add Recipe</p>
             <div className="mt-4 flex w-[40$] max-w-[25rem] flex-col gap-4">
-                <FormFiled
+                <FormField
                     title="Title"
                     required
                     field={
@@ -104,7 +119,7 @@ export const RecipeForm = ({ onCancel, onSave }: RecipeFormProps) => {
                     isValid={isTitleValid(title)}
                     invalidMessage="Title can not be empty"
                 />
-                <FormFiled
+                <FormField
                     title="Category"
                     required
                     field={
@@ -118,11 +133,11 @@ export const RecipeForm = ({ onCancel, onSave }: RecipeFormProps) => {
                     isValid={isDishTypesValid(dishTypes)}
                     invalidMessage="Choose one category"
                 />
-                <FormFiled
+                <FormField
                     title="Ingredients"
                     field={<Textarea placeholder="Cucumber, tomatoes, red pepper..." />}
                 />
-                <FormFiled
+                <FormField
                     title="Short recipe description"
                     required
                     field={
@@ -136,7 +151,7 @@ export const RecipeForm = ({ onCancel, onSave }: RecipeFormProps) => {
                     isValid={isSummaryValid(summary)}
                     invalidMessage="Summary can not be empty"
                 />
-                <FormFiled
+                <FormField
                     title="Preparation description"
                     field={
                         <Textarea
@@ -147,7 +162,7 @@ export const RecipeForm = ({ onCancel, onSave }: RecipeFormProps) => {
                         />
                     }
                 />
-                <FormFiled
+                <FormField
                     title="Preparation time (min)"
                     field={
                         <Input
@@ -161,6 +176,30 @@ export const RecipeForm = ({ onCancel, onSave }: RecipeFormProps) => {
                     }
                     isValid={isReadyInMinutesValid(readyInMinutes)}
                     invalidMessage="Must be a positive number"
+                />
+                <FormField
+                    title="Cuisines"
+                    field={
+                        <CheckboxGroup
+                            value={cuisines || []}
+                            onChange={value => dispatch({ type: "change_cuisines", value })}
+                            options={cuisinesToOptions()}
+                        />
+                    }
+                />
+                <FormField
+                    title="Vegetarian"
+                    field={
+                        <RadioGroup
+                            name="vegetarian"
+                            options={[
+                                { value: "true", label: "Yes" },
+                                { value: "false", label: "No" }
+                            ]}
+                            value={(!!vegetarian).toString()}
+                            onChange={value => dispatch({ type: "change_vegetarian", value })}
+                        />
+                    }
                 />
             </div>
             <div className="flex gap-2">

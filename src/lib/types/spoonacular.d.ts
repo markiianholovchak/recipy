@@ -60,7 +60,6 @@ type SpoonacularRecipeInformation = RecipeInformation & {
     veryPopular: boolean;
     whole30: boolean;
     weightWatcherSmartPoints: number;
-    extendedIngredients: SpoonacularExtendedIngredient[];
     winePairing: SpoonacularWinePairing;
     aggregateLikes: number;
 };

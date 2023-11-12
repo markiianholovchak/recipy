@@ -12,7 +12,8 @@ export const EMPTY_RECIPE: RecipeInformation = {
     vegan: false,
     vegetarian: false,
     dishTypes: [],
-    summary: ""
+    summary: "",
+    extendedIngredients: []
 };
 
 export const RECIPE_CATEGORIES = [
@@ -32,4 +33,35 @@ export const RECIPE_CATEGORIES = [
     "drink"
 ];
 
+export const CUISINES = [
+    "African",
+    "Asian",
+    "American",
+    "British",
+    "Cajun",
+    "Caribbean",
+    "Chinese",
+    "Eastern European",
+    "European",
+    "French",
+    "German",
+    "Greek",
+    "Indian",
+    "Irish",
+    "Italian",
+    "Japanese",
+    "Jewish",
+    "Korean",
+    "Latin American",
+    "Mediterranean",
+    "Mexican",
+    "Middle Eastern",
+    "Nordic",
+    "Southern",
+    "Spanish",
+    "Thai",
+    "Vietnamese"
+];
+
 export const USER_RECIPES_STORAGE_KEY = "user-recipes";
+export const SAVED_RECIPES_STORAGE_KEY = "saved-recipes";

@@ -14,24 +14,30 @@ type RecipeInformation = {
     vegan: boolean;
     vegetarian: boolean;
     dishTypes: string[];
+    extendedIngredients: SpoonacularExtendedIngredient[];
     summary: string;
 };
 
-type RecipeReducerActionTypeWithValue =
+type RecipeReducerActionTypeWithStringValue =
     | "change_title"
     | "change_category"
     | "change_summary"
     | "change_instructions"
     | "change_prepTime"
-    | "change_category";
+    | "change_category"
+    | "change_vegetarian";
 
 type RecipeReducerActionType = "clear_data";
 
 type RecipeReducerAction =
     | {
-          type: RecipeReducerActionTypeWithValue;
+          type: RecipeReducerActionTypeWithStringValue;
           value: string;
       }
     | {
           type: RecipeReducerActionType;
+      }
+    | {
+          type: "change_cuisines";
+          value: string[];
       };

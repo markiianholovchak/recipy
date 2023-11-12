@@ -1,24 +1,27 @@
 import { IconButton } from "@material-tailwind/react";
 import { useState } from "react";
 import { AiOutlineClockCircle } from "react-icons/ai";
-import { useUserRecipesContext } from "../../lib/contexts/UserRecipesContext";
 import { getDurationStringFromDuration } from "../../lib/utils/general.utils";
+import { useNavigate } from "react-router-dom";
+import { PATH_RECIPE_DETAILS } from "../../lib/paths";
 
 type RecipeCardProps = {
     recipe: RecipeInformation;
-    isUserRecipe?: boolean;
+    handleDelete?: () => void;
 };
-export const RecipeCard = ({ recipe, isUserRecipe }: RecipeCardProps) => {
+export const RecipeCard = ({ recipe, handleDelete }: RecipeCardProps) => {
     const [hasImageLoaded, setHasImageLoaded] = useState(false);
-    const { deleteUserRecipe } = useUserRecipesContext();
-    const handleDeleteRecipe = () => {
-        if (isUserRecipe) {
-            deleteUserRecipe(recipe.id);
-        }
+    const navigate = useNavigate();
+
+    const handleGoToRecipeDetails = () => {
+        navigate(PATH_RECIPE_DETAILS(recipe.id.toString()));
     };
 
     return (
-        <div className="relative flex w-[15rem] flex-col gap-2">
+        <div
+            className="relative flex w-[15rem] cursor-pointer flex-col gap-2"
+            onClick={handleGoToRecipeDetails}
+        >
             <div className=" h-[15rem] rounded-md bg-gray-200 object-contain">
                 <img
                     src="/assets/cheesecake.jpg"
@@ -38,11 +41,14 @@ export const RecipeCard = ({ recipe, isUserRecipe }: RecipeCardProps) => {
                 </div>
                 <p className="text-2xl font-semibold">{recipe.title}</p>
             </div>
-            {isUserRecipe && (
+            {handleDelete && (
                 <IconButton
                     className=" absolute right-2 top-2 bg-green-400"
                     ripple={false}
-                    onClick={handleDeleteRecipe}
+                    onClick={e => {
+                        e.stopPropagation();
+                        handleDelete();
+                    }}
                 >
                     X
                 </IconButton>

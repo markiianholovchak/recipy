@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import storage from "../storage";
+import { getStorageRecipes, saveRecipesToStorage } from "../calls/recipe.calls";
 import { USER_RECIPES_STORAGE_KEY } from "../constants/recipe.constants";
 
 interface MyContextType {
@@ -27,7 +27,7 @@ export const UserRecipesContextProvider: React.FC<MyProviderProps> = ({ children
     const [userRecipes, setUserRecipes] = useState<RecipeInformation[]>([]);
 
     const saveToStorage = (recipes: RecipeInformation[]) => {
-        storage.setItem(USER_RECIPES_STORAGE_KEY, recipes);
+        saveRecipesToStorage(USER_RECIPES_STORAGE_KEY, recipes);
     };
 
     const updateUserRecipes = (newData: RecipeInformation[]) => {
@@ -48,18 +48,23 @@ export const UserRecipesContextProvider: React.FC<MyProviderProps> = ({ children
     };
 
     useEffect(() => {
-        const getStorageRecipes = async () => {
-            const storageData = await storage.getItem(USER_RECIPES_STORAGE_KEY);
+        const getRecipesFromStorage = async () => {
+            const storageData = await getStorageRecipes(USER_RECIPES_STORAGE_KEY);
             if (storageData) {
-                updateUserRecipes([...userRecipes, ...(storageData as RecipeInformation[])]);
+                updateUserRecipes([...userRecipes, ...storageData]);
             }
         };
-        getStorageRecipes();
+        getRecipesFromStorage();
     }, []);
 
     return (
         <UserRecipesContext.Provider
-            value={{ userRecipes, updateUserRecipes, addUserRecipe, deleteUserRecipe }}
+            value={{
+                userRecipes,
+                updateUserRecipes,
+                addUserRecipe,
+                deleteUserRecipe
+            }}
         >
             {children}
         </UserRecipesContext.Provider>
