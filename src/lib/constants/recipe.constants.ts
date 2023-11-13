@@ -65,3 +65,4 @@ export const CUISINES = [
 
 export const USER_RECIPES_STORAGE_KEY = "user-recipes";
 export const SAVED_RECIPES_STORAGE_KEY = "saved-recipes";
+export const SEARCH_RESULTS_PAGE_SIZE = 10;

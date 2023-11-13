@@ -2,13 +2,17 @@
 import { FormEvent, useState } from "react";
 import { BsArrowRightShort } from "react-icons/bs";
 import { BsSearch } from "react-icons/bs";
+import { useNavigate, useParams } from "react-router-dom";
+import { PATH_SEARCH } from "../lib/paths";
+import { EMPTY_CATEGORY_KEYWORD } from "../lib/constants/general.constants";
 
 export const SearchBar = () => {
     const [query, setQuery] = useState("");
+    const navigate = useNavigate();
+    const { category } = useParams();
     const handleSearch = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setQuery("");
-        alert("Submitted");
+        navigate(PATH_SEARCH(category || EMPTY_CATEGORY_KEYWORD, query));
     };
     return (
         <form

@@ -24,7 +24,7 @@ export const RecipeCard = ({ recipe, handleDelete }: RecipeCardProps) => {
         >
             <div className=" h-[15rem] rounded-md bg-gray-200 object-contain">
                 <img
-                    src="/assets/cheesecake.jpg"
+                    src={recipe.image || "/assets/cheesecake.jpg"}
                     className={`h-full w-full rounded-md object-cover ${
                         hasImageLoaded ? "" : "blur-xl"
                     }`}
@@ -33,13 +33,13 @@ export const RecipeCard = ({ recipe, handleDelete }: RecipeCardProps) => {
             </div>
             <div className="flex flex-col gap-3">
                 <div className="flex items-center justify-between text-xl">
-                    <p className="font-medium text-green-500">{recipe.dishTypes.join(",")}</p>
+                    <p className="truncate font-medium text-green-500">{recipe.dishTypes[0]}</p>
                     <p className="flex items-center gap-1 font-light">
                         <AiOutlineClockCircle />
                         {getDurationStringFromDuration(recipe.readyInMinutes)}
                     </p>
                 </div>
-                <p className="text-2xl font-semibold">{recipe.title}</p>
+                <p className="truncate text-xl font-semibold">{recipe.title}</p>
             </div>
             {handleDelete && (
                 <IconButton

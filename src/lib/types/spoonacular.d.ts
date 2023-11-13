@@ -74,6 +74,6 @@ type SpoonacularRecipeSearchEntity = {
 type SpoonacularRecipeSearchResult = {
     offset: number;
     number: number;
-    results: SpoonacularRecipeSearchEntity[];
+    results: SpoonacularRecipeInformation[];
     totalResults: number;
 };
