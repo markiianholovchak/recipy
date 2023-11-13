@@ -23,8 +23,7 @@ type DetailsProps = {
 export const Details = ({ recipeId }: DetailsProps) => {
     const { addRecipeToSaved, deleteRecipeFromSaved } = useSavedRecipesContext();
     const { data: recipe } = useRecipe(parseFloat(recipeId as string), { suspense: true });
-    // const recipe = MOCK_RECIPE;
-    console.log(recipe, recipeId);
+
     if (!recipe) return null;
     return (
         <div>
@@ -94,7 +93,10 @@ export const Details = ({ recipeId }: DetailsProps) => {
                 {recipe.instructions && (
                     <>
                         <GreenSubHeading title="Instructions" icon={<GiCook fontSize={25} />} />
-                        <p className="mt-4">{recipe.instructions}</p>
+                        <p
+                            className="mt-4"
+                            dangerouslySetInnerHTML={{ __html: recipe.instructions }}
+                        ></p>
                     </>
                 )}
             </div>

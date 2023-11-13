@@ -4,7 +4,7 @@ import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@material-tailwind/react";
 import { Home } from "./lib/pages/Home";
-import { PATH_HOME, PATH_RECIPE_DETAILS_BASE, PATH_SAVED } from "./lib/paths";
+import { PATH_HOME, PATH_RECIPE_DETAILS_BASE, PATH_SAVED, PATH_SEARCH_BASE } from "./lib/paths";
 import "react-multi-carousel/lib/styles.css";
 import { Saved } from "./lib/pages/Saved";
 import { Footer } from "./components/Footer";
@@ -12,6 +12,7 @@ import { UserRecipesContextProvider } from "./lib/contexts/UserRecipesContext";
 import { Header } from "./components/Header";
 import { RecipeDetails } from "./lib/pages/RecipeDetails";
 import { SavedRecipesContextProvider } from "./lib/contexts/SavedRecipesContext";
+import { Search } from "./lib/pages/Search";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
@@ -28,6 +29,15 @@ root.render(
                                 path={PATH_RECIPE_DETAILS_BASE + "/:recipeId"}
                                 element={<RecipeDetails />}
                             />
+                            <Route
+                                path={PATH_RECIPE_DETAILS_BASE + "/:recipeId"}
+                                element={<RecipeDetails />}
+                            />
+                            <Route
+                                path={PATH_RECIPE_DETAILS_BASE + "/:recipeId"}
+                                element={<RecipeDetails />}
+                            />
+                            <Route path={PATH_SEARCH_BASE + "/:category"} element={<Search />} />
                         </Routes>
                         <Footer />
                     </BrowserRouter>
