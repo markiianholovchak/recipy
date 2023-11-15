@@ -33,7 +33,6 @@ export class RecipesClient {
         pageSize = 10
     ): Promise<SpoonacularRecipeSearchResult | undefined> => {
         try {
-            console.log(this.API_RECIPE_SEARCH_URL(params, offset, pageSize));
             const response = await fetch(this.API_RECIPE_SEARCH_URL(params, offset, pageSize));
             if (!response.ok) {
                 throw new Error("Could not fetch recipes for the given params");
