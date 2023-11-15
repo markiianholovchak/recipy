@@ -1,7 +1,10 @@
 import Carousel from "react-multi-carousel";
 
-// import { RecipeCard } from "./RecipeCard";
-export const RecipesCarousel = () => {
+import { RecipeCard } from "./RecipeCard";
+type RecipesCarouselProps = {
+    recipes: RecipeInformation[];
+};
+export const RecipesCarousel = ({ recipes }: RecipesCarouselProps) => {
     const responsive = {
         "2xl": {
             breakpoint: { max: 4000, min: 1850 },
@@ -36,7 +39,9 @@ export const RecipesCarousel = () => {
     };
     return (
         <Carousel responsive={responsive} swipeable itemClass="flex justify-center">
-            <></>
+            {recipes.map(recipe => (
+                <RecipeCard key={recipe.id} recipe={recipe} />
+            ))}
         </Carousel>
     );
 };

@@ -18,7 +18,7 @@ export const Saved = () => {
                 <div className="flex flex-col gap-5">
                     <div>
                         <SectionHeading title="Saved Recipes" />
-                        <div className=" grid grid-cols-[repeat(auto-fit,15rem)] gap-4">
+                        <div className=" grid grid-cols-[repeat(auto-fit,15rem)] justify-center gap-4 md:justify-start">
                             {savedRecipes.map((recipe, index) => (
                                 <RecipeCard
                                     key={index}
@@ -31,7 +31,7 @@ export const Saved = () => {
 
                     <div>
                         <SectionHeading title="My Recipes" />
-                        <div className=" grid grid-cols-[repeat(auto-fit,15rem)] gap-4">
+                        <div className=" grid grid-cols-[repeat(auto-fit,15rem)] justify-center gap-4 md:justify-start">
                             {userRecipes.map((recipe, index) => (
                                 <RecipeCard
                                     key={index}

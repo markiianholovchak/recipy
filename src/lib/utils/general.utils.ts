@@ -14,3 +14,7 @@ export const getDurationStringFromDuration = (duration: number): string => {
 
     return durationString;
 };
+
+export const isEven = (num: number) => {
+    return num % 2 === 0;
+};

@@ -11,7 +11,7 @@ type SearchResultsProps = {
 export const SearchResults = ({ keyphrase }: SearchResultsProps) => {
     const [currentPage, setCurrentPage] = useState(1);
     const { data } = useSearchRecipes(
-        keyphrase,
+        { query: keyphrase },
         (currentPage - 1) * SEARCH_RESULTS_PAGE_SIZE,
         SEARCH_RESULTS_PAGE_SIZE,
         { suspense: true }
@@ -23,7 +23,7 @@ export const SearchResults = ({ keyphrase }: SearchResultsProps) => {
     };
     return (
         <>
-            <div className=" my-8 grid grid-cols-[repeat(auto-fit,15rem)] gap-4">
+            <div className=" my-8 grid grid-cols-[repeat(auto-fit,15rem)] justify-center gap-4">
                 {data.results.map(recipe => (
                     <RecipeCard key={recipe.id} recipe={recipe} />
                 ))}

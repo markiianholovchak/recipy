@@ -16,6 +16,7 @@ type RecipeInformation = {
     dishTypes: string[];
     extendedIngredients: SpoonacularExtendedIngredient[];
     summary: string;
+    shortIngredients?: string;
 };
 
 type RecipeReducerActionTypeWithStringValue =
@@ -23,8 +24,10 @@ type RecipeReducerActionTypeWithStringValue =
     | "change_category"
     | "change_summary"
     | "change_instructions"
+    | "change_shortIngredients"
     | "change_prepTime"
     | "change_category"
+    | "change_servings"
     | "change_vegetarian";
 
 type RecipeReducerActionType = "clear_data";
@@ -41,3 +44,9 @@ type RecipeReducerAction =
           type: "change_cuisines";
           value: string[];
       };
+
+type SearchRecipeParams = {
+    query?: string;
+    type?: string;
+    sort?: string;
+};

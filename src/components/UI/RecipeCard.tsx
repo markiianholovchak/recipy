@@ -4,6 +4,7 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { getDurationStringFromDuration } from "../../lib/utils/general.utils";
 import { useNavigate } from "react-router-dom";
 import { PATH_RECIPE_DETAILS } from "../../lib/paths";
+import { ImagePlaceholder } from "./ImagePlaceholder";
 
 type RecipeCardProps = {
     recipe: RecipeInformation;
@@ -23,13 +24,17 @@ export const RecipeCard = ({ recipe, handleDelete }: RecipeCardProps) => {
             onClick={handleGoToRecipeDetails}
         >
             <div className=" h-[15rem] rounded-md bg-gray-200 object-contain">
-                <img
-                    src={recipe.image || "/assets/cheesecake.jpg"}
-                    className={`h-full w-full rounded-md object-cover ${
-                        hasImageLoaded ? "" : "blur-xl"
-                    }`}
-                    onLoad={() => setHasImageLoaded(true)}
-                />
+                {recipe.image ? (
+                    <img
+                        src={recipe.image || "/assets/cheesecake.jpg"}
+                        className={`h-full w-full rounded-md object-cover ${
+                            hasImageLoaded ? "" : "blur-xl"
+                        }`}
+                        onLoad={() => setHasImageLoaded(true)}
+                    />
+                ) : (
+                    <ImagePlaceholder />
+                )}
             </div>
             <div className="flex flex-col gap-3">
                 <div className="flex items-center justify-between text-xl">

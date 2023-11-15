@@ -2,11 +2,8 @@ import { Divider } from "../UI/Divider";
 import { SectionHeading } from "../UI/SectionHeading";
 import { SmallSectionHeading } from "../UI/SmallSectionHeading";
 import { ImagePlaceholder } from "../UI/ImagePlaceholder";
-import { Macro } from "./Macro";
-import { KnifeForkIcon } from "../../assets/KnifeForkIcon";
 import { useSavedRecipesContext } from "../../lib/contexts/SavedRecipesContext";
 import { SaveRecipe } from "./SaveRecipe";
-// import { MOCK_RECIPE } from "../../lib/mock/data";
 import { GreenSubHeading } from "../UI/GreenSubHeading";
 import { GiCook } from "react-icons/gi";
 import { BiFoodMenu, BiBowlRice } from "react-icons/bi";
@@ -22,7 +19,11 @@ type DetailsProps = {
 };
 export const Details = ({ recipeId }: DetailsProps) => {
     const { addRecipeToSaved, deleteRecipeFromSaved } = useSavedRecipesContext();
-    const { data: recipe } = useRecipe(parseFloat(recipeId as string), { suspense: true });
+    const { data: recipe } = useRecipe(parseFloat(recipeId as string), {
+        suspense: true,
+        revalidateIfStale: false,
+        revalidateOnFocus: false
+    });
 
     if (!recipe) return null;
     return (
@@ -30,23 +31,15 @@ export const Details = ({ recipeId }: DetailsProps) => {
             <SectionHeading title={recipe.dishTypes[0]} titleClasses={"text-xl text-green-400"} />
             <h1 className="text-center text-3xl font-light">{recipe.title}</h1>
             <div className="my-5 flex flex-col gap-4 md:flex-row">
-                <div className="h-[20rem] md:w-[50%]">
+                <div className="flex min-h-[20rem] w-full justify-center">
                     {recipe.image ? (
-                        <img className="h-full w-full rounded-md object-cover" src={recipe.image} />
+                        <img
+                            className="h-[20rem] w-auto rounded-md object-cover md:h-[25rem]"
+                            src={recipe.image}
+                        />
                     ) : (
                         <ImagePlaceholder />
                     )}
-                </div>
-                <div className="flex flex-1 flex-col items-center gap-4">
-                    <div className="flex w-max items-center justify-center rounded-full bg-green-75 p-4">
-                        <KnifeForkIcon
-                            width={"3rem"}
-                            height={"3rem"}
-                            className=" text-green-400"
-                            color=""
-                        />
-                    </div>
-                    <Macro />
                 </div>
             </div>
             <Divider />
@@ -80,6 +73,15 @@ export const Details = ({ recipeId }: DetailsProps) => {
                     <>
                         <GreenSubHeading title="Cuisines" icon={<FaKitchenSet fontSize={25} />} />
                         <p className="mt-4">{recipe.cuisines.join(", ")}</p>
+                    </>
+                )}
+                {!!recipe.shortIngredients && (
+                    <>
+                        <GreenSubHeading
+                            title="Short ingredients list"
+                            icon={<BiFoodMenu fontSize={25} />}
+                        />
+                        <p>{recipe.shortIngredients}</p>
                     </>
                 )}
 

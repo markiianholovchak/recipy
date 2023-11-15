@@ -6,6 +6,7 @@ import {
     isDishTypesValid,
     isReadyInMinutesValid,
     isRecipeFormValid,
+    isServingsValid,
     isSummaryValid,
     isTitleValid
 } from "../../lib/validators/recipeForm.validators";
@@ -56,6 +57,20 @@ const recipeReducer = (state: Partial<RecipeInformation>, action: RecipeReducerA
                 readyInMinutes: newValue && isNaN(newValue) ? state.readyInMinutes : newValue
             };
         }
+        case "change_servings": {
+            if (!action.value?.length) {
+                return {
+                    ...state,
+                    servings: undefined
+                };
+            }
+            const newValue = action.value.length ? parseFloat(action.value) : undefined;
+
+            return {
+                ...state,
+                servings: newValue && isNaN(newValue) ? state.servings : newValue
+            };
+        }
         case "clear_data": {
             return {
                 ...EMPTY_RECIPE
@@ -73,6 +88,12 @@ const recipeReducer = (state: Partial<RecipeInformation>, action: RecipeReducerA
                 vegetarian: action.value === "true"
             };
         }
+        case "change_shortIngredients": {
+            return {
+                ...state,
+                shortIngredients: action.value
+            };
+        }
     }
 };
 
@@ -83,7 +104,17 @@ type RecipeFormProps = {
 
 export const RecipeForm = ({ onCancel, onSave }: RecipeFormProps) => {
     const [state, dispatch] = useReducer(recipeReducer, EMPTY_RECIPE);
-    const { title, summary, instructions, readyInMinutes, dishTypes, cuisines, vegetarian } = state;
+    const {
+        title,
+        summary,
+        instructions,
+        readyInMinutes,
+        dishTypes,
+        cuisines,
+        vegetarian,
+        shortIngredients,
+        servings
+    } = state;
 
     const { addUserRecipe } = useUserRecipesContext();
 
@@ -135,7 +166,15 @@ export const RecipeForm = ({ onCancel, onSave }: RecipeFormProps) => {
                 />
                 <FormField
                     title="Ingredients"
-                    field={<Textarea placeholder="Cucumber, tomatoes, red pepper..." />}
+                    field={
+                        <Textarea
+                            placeholder="Cucumber, tomatoes, red pepper..."
+                            value={shortIngredients}
+                            onChange={e =>
+                                dispatch({ type: "change_shortIngredients", value: e.target.value })
+                            }
+                        />
+                    }
                 />
                 <FormField
                     title="Short recipe description"
@@ -175,6 +214,21 @@ export const RecipeForm = ({ onCancel, onSave }: RecipeFormProps) => {
                         />
                     }
                     isValid={isReadyInMinutesValid(readyInMinutes)}
+                    invalidMessage="Must be a positive number"
+                />
+                <FormField
+                    title="Servings"
+                    field={
+                        <Input
+                            crossOrigin={""}
+                            type="number"
+                            value={servings}
+                            onChange={e =>
+                                dispatch({ type: "change_servings", value: e.target.value })
+                            }
+                        />
+                    }
+                    isValid={isServingsValid(servings)}
                     invalidMessage="Must be a positive number"
                 />
                 <FormField

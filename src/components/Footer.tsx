@@ -11,15 +11,15 @@ export const Footer = () => {
                         <div className="flex flex-col gap-2">
                             <p className="text-2xl font-semibold">Recipy</p>
                             <nav className="flex gap-2">
-                                <a href="#">About Us</a>
-                                <a href="#">Contact</a>
-                                <a href="#">LinkTree</a>
+                                <a href="/">About Us</a>
+                                <a href="/">Contact</a>
+                                <a href="/">LinkTree</a>
                             </nav>
                         </div>
                         <NewsLetterForm />
                     </div>
                     <Divider />
-                    <div className="flex justify-between font-light text-gray-500">
+                    <div className="flex flex-col font-light text-gray-500 md:flex-row md:justify-between">
                         <p>&copy; {new Date().getFullYear()} Recipy. All Rights Reserved.</p>
                         <nav className="flex gap-2">
                             <a href="#">Privacy</a>
