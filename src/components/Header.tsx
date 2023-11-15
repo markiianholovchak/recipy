@@ -31,10 +31,16 @@ export const Header = () => {
                 <img src="/assets/header-bg.jpg" className=" h-full w-full object-cover"></img>
                 <div className="absolute left-0 top-0 h-full w-full bg-green-500 opacity-[0.25]"></div>
             </div>
-            <nav className="z-10 flex justify-end gap-2 px-6 py-8 font-light text-white">
-                {HEADER_NAVIGATION_LINKS.map(link => (
-                    <NavLink key={link.title} link={link} />
-                ))}
+            <nav className="z-10 flex justify-between gap-2 px-6 py-8 font-light text-white">
+                <Link className="text-2xl font-semibold" to={"/"}>
+                    Recipy
+                </Link>
+
+                <div className="flex gap-2">
+                    {HEADER_NAVIGATION_LINKS.map(link => (
+                        <NavLink key={link.title} link={link} />
+                    ))}
+                </div>
             </nav>
             <div className="z-10 flex flex-1 items-center justify-center ">
                 <div className="w-[85%] max-w-[35rem]">

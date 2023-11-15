@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import { SearchResults } from "../../components/SearchResults";
 import { ContentContainer } from "../../components/UI/ContentContainer";
+import { Suspense } from "react";
+import { Loader } from "../../components/UI/Loader";
 
 export const Search = () => {
     const { category } = useParams();
@@ -12,7 +14,9 @@ export const Search = () => {
     return (
         <main>
             <ContentContainer>
-                <SearchResults keyphrase={keyphrase} category={category} />
+                <Suspense fallback={<Loader />}>
+                    <SearchResults keyphrase={keyphrase} category={category} />
+                </Suspense>
             </ContentContainer>
         </main>
     );
