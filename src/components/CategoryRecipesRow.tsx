@@ -1,4 +1,3 @@
-import { Button } from "@material-tailwind/react";
 import { RecipesCarousel } from "./UI/RecipesCarousel";
 import { useSearchRecipes } from "../lib/hooks/data/useSearchRecipes";
 
@@ -20,12 +19,6 @@ export const CategoryRecipesRow = ({ category }: CategoryRecipesRowProps) => {
             <div className="">
                 <RecipesCarousel recipes={recipes.results} />
             </div>
-
-            <a href="/">
-                <Button className="w-max rounded-md bg-green-400" ripple={false}>
-                    View more...
-                </Button>
-            </a>
         </div>
     );
 };
