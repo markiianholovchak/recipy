@@ -16,11 +16,17 @@ export const SearchResults = ({ keyphrase }: SearchResultsProps) => {
         SEARCH_RESULTS_PAGE_SIZE,
         { suspense: true }
     );
-    if (!data) return <p>No found recipes!</p>;
+    if (!data?.results.length)
+        return (
+            <p className="my-14 flex-1 text-center text-2xl">
+                Could not find any recipes for keyword: {keyphrase}
+            </p>
+        );
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     };
+
     return (
         <>
             <div className=" my-8 grid grid-cols-[repeat(auto-fit,15rem)] justify-center gap-4">

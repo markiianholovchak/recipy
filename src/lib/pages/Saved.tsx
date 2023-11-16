@@ -13,11 +13,14 @@ export const Saved = () => {
     const { savedRecipes, deleteRecipeFromSaved } = useSavedRecipesContext();
 
     return (
-        <main>
+        <main className="flex-1">
             <ContentContainer>
                 <div className="flex flex-col gap-5">
                     <div>
                         <SectionHeading title="Saved Recipes" />
+                        {!savedRecipes.length && (
+                            <p className="text-center text-2xl">No saved recipes yet! :(</p>
+                        )}
                         <div className=" grid grid-cols-[repeat(auto-fit,15rem)] justify-center gap-4 md:justify-start">
                             {savedRecipes.map((recipe, index) => (
                                 <RecipeCard

@@ -7,3 +7,9 @@ body {
     color: #212529;
     background-color: #fbfce5;
 }
+
+#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}

@@ -12,7 +12,7 @@ export const Search = () => {
 
     if (!keyphrase || !category) return null;
     return (
-        <main>
+        <main className="flex-1">
             <ContentContainer>
                 <Suspense fallback={<Loader />}>
                     <SearchResults keyphrase={keyphrase} category={category} />

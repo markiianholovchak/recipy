@@ -4,7 +4,7 @@ import { Divider } from "./UI/Divider";
 
 export const Footer = () => {
     return (
-        <footer className="mb-16 mt-14">
+        <footer className="mb-8 mt-14 md:mb-16">
             <ContentContainer>
                 <div className="flex flex-col gap-4">
                     <div className="flex flex-col justify-between gap-4 md:flex-row">
